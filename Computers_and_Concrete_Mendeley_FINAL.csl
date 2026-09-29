@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" version="1.0" class="in-text" default-locale="en-US">
+  <info>
+    <title>Computers and Concrete (Techno-Press sample, custom)</title>
+    <title-short>Computers and Concrete</title-short>
+    <id>https://raw.githubusercontent.com/qaisgawah/mendeley-csl/main/Computers_and_Concrete_Mendeley_FINAL.csl</id>
+    <link href="https://raw.githubusercontent.com/qaisgawah/mendeley-csl/main/Computers_and_Concrete_Mendeley_FINAL.csl" rel="self"/>
+    <link href="https://www.techno-press.org/cac/" rel="documentation"/>
+    <author>
+      <name>Custom style based on the user-provided Computers and Concrete sample</name>
+    </author>
+    <category citation-format="numeric"/>
+    <category field="engineering"/>
+    <summary>Numbered in-text citations and citation-order bibliography. Full author list, surname then initials, year in parentheses, full article and journal titles, volume, page range or article number, and full DOI URL.</summary>
+    <updated>2026-09-30T00:00:00+00:00</updated>
+  </info>
+  <macro name="authors">
+    <names variable="author">
+      <name name-as-sort-order="all" sort-separator=", " initialize-with="." delimiter=", "/>
+      <substitute>
+        <names variable="editor"/>
+        <text variable="title"/>
+      </substitute>
+    </names>
+  </macro>
+  <macro name="year">
+    <date variable="issued" prefix="(" suffix=")">
+      <date-part name="year"/>
+    </date>
+  </macro>
+  <macro name="journal-details">
+    <group delimiter=", ">
+      <text variable="container-title" form="long"/>
+      <text variable="volume"/>
+      <choose>
+        <if variable="page">
+          <text variable="page"/>
+        </if>
+        <else>
+          <text variable="number"/>
+        </else>
+      </choose>
+    </group>
+  </macro>
+  <macro name="other-details">
+    <group delimiter=", ">
+      <text variable="container-title" form="long"/>
+      <text variable="publisher"/>
+      <text variable="publisher-place"/>
+      <text variable="volume"/>
+      <text variable="page"/>
+    </group>
+  </macro>
+  <macro name="source">
+    <choose>
+      <if type="article-journal article-magazine article-newspaper" match="any">
+        <text macro="journal-details"/>
+      </if>
+      <else>
+        <text macro="other-details"/>
+      </else>
+    </choose>
+  </macro>
+  <macro name="link">
+    <choose>
+      <if variable="DOI">
+        <text variable="DOI" prefix="https://doi.org/"/>
+      </if>
+      <else-if variable="URL">
+        <text variable="URL"/>
+      </else-if>
+    </choose>
+  </macro>
+  <citation collapse="citation-number">
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+    <layout prefix="[" suffix="]" delimiter=", ">
+      <text variable="citation-number"/>
+    </layout>
+  </citation>
+  <bibliography entry-spacing="0" second-field-align="flush">
+    <sort>
+      <key variable="citation-number"/>
+    </sort>
+    <layout suffix=".">
+      <text variable="citation-number" suffix="."/>
+      <group delimiter=" ">
+        <text macro="authors" suffix="."/>
+        <text macro="year" suffix="."/>
+        <text variable="title" suffix="."/>
+        <text macro="source" suffix="."/>
+        <text macro="link"/>
+      </group>
+    </layout>
+  </bibliography>
+</style>

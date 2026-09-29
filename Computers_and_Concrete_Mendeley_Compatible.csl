@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<style xmlns="http://purl.org/net/xbiblio/csl" version="1.0" class="in-text" default-locale="en-US">
+  <info>
+    <title>Computers and Concrete (Mendeley Compatible)</title>
+    <id>http://www.zotero.org/styles/computers-and-concrete-mendeley-compatible</id>
+    <link href="http://www.zotero.org/styles/computers-and-concrete-mendeley-compatible" rel="self"/>
+    <author><name>Custom journal sample adaptation</name></author>
+    <category citation-format="numeric"/>
+    <updated>2026-09-30T00:00:00+00:00</updated>
+  </info>
+  <macro name="author">
+    <names variable="author">
+      <name name-as-sort-order="all" sort-separator=", " initialize-with="." delimiter=", "/>
+      <substitute><names variable="editor"/></substitute>
+    </names>
+  </macro>
+  <macro name="issued">
+    <date variable="issued" prefix="(" suffix=")"><date-part name="year"/></date>
+  </macro>
+  <macro name="source">
+    <choose>
+      <if type="article-journal" match="any">
+        <group delimiter=", ">
+          <text variable="container-title"/>
+          <group delimiter=""><text variable="volume"/><text variable="issue" prefix="(" suffix=")"/></group>
+          <text variable="page"/>
+        </group>
+      </if>
+      <else>
+        <group delimiter=", ">
+          <text variable="container-title"/>
+          <text variable="publisher"/>
+          <text variable="volume"/>
+          <text variable="page"/>
+        </group>
+      </else>
+    </choose>
+  </macro>
+  <macro name="identifier">
+    <choose>
+      <if variable="DOI"><text variable="DOI" prefix="https://doi.org/"/></if>
+      <else-if variable="URL"><text variable="URL"/></else-if>
+    </choose>
+  </macro>
+  <citation>
+    <layout prefix="[" suffix="]" delimiter=", "><text variable="citation-number"/></layout>
+  </citation>
+  <bibliography entry-spacing="0">
+    <layout suffix=".">
+      <text variable="citation-number" suffix=". "/>
+      <group delimiter=" ">
+        <text macro="author" suffix="."/>
+        <text macro="issued" suffix="."/>
+        <text variable="title" suffix="."/>
+        <text macro="source" suffix="."/>
+        <text macro="identifier"/>
+      </group>
+    </layout>
+  </bibliography>
+</style>
